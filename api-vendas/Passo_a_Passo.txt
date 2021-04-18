@@ -110,3 +110,9 @@ app.use(
     });
   },
 ); //Configuração do tratamento de erros
+
+
+==================TypeORM=================
+yarn add typeorm reflect-metadata pg
+server.ts
+import 'reflect-metadata';
