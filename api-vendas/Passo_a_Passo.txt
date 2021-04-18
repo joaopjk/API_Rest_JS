@@ -137,3 +137,17 @@ server.ts:
 import '@shared/typeorm';
 
 docker run --name postgres -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
+
+ormconfig:
+  "migrations":[
+    "./src/shared/typeorm/migrations/*.ts"
+  ],
+  "cli":{
+    "migrationDir":"./src/shared/typeorm/migrations"
+  }
+  
+package.json:
+"typeorm":"ts-node-dev ./node_modules/typeorm/cli.js"
+
+============Criando tabelas
+yarn typeorm migration:create -n CreateProducts
