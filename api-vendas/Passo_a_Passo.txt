@@ -80,3 +80,33 @@ routes.get('/', (request, response) => {
 });
 
 export default routes;
+
+================Configuração do tratamento de erros da Aplicação 
+class AppError {
+  public readonly message: string;
+  public readonly statusCode: number;
+
+  constructor(message: string, statusCode = 400) {
+    this.message = message;
+    this.statusCode = statusCode;
+  }
+}
+
+export default AppError;
+
+server.ts
+app.use(
+  (error: Error, request: Request, response: Response, next: NextFunction) => {
+    if (error instanceof AppError) {
+      return response.status(error.statusCode).json({
+        status: 'Error',
+        message: error.message,
+      });
+    }
+
+    return response.status(500).json({
+      status: 'error',
+      message: 'Internal Server Error',
+    });
+  },
+); //Configuração do tratamento de erros
