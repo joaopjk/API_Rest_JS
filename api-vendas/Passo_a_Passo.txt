@@ -143,7 +143,7 @@ ormconfig:
     "./src/shared/typeorm/migrations/*.ts"
   ],
   "cli":{
-    "migrationDir":"./src/shared/typeorm/migrations"
+    "migrationsDir":"./src/shared/typeorm/migrations"
   }
   
 package.json:
@@ -151,3 +151,34 @@ package.json:
 
 ============Criando tabelas
 yarn typeorm migration:create -n CreateProducts
+criar os campos da tabela no arquivo da migrations que foi criada.
+configurar no banco a extension uuid-ossp
+criar a entidade do produto na pasta modules
+
+======= Table => Object 
+criar a entidade do produto na pasta modules
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+
+repository
+import { EntityRepository, Repository } from 'typeorm';
+import Product from '../entities/Product';
+
+@EntityRepository(Product)
+export class ProductRepository extends Repository<Product> {
+  public async findByName(name: string): Promise<Product | undefined> {
+    const product = this.findOne({
+      where: {
+        name,
+      },
+    });
+
+    return product;
+  }
+}
+Repository
