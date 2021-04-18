@@ -23,3 +23,15 @@ yarn add -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
 Na raiz do seu projeto crie um arquivo .eslintrc com uma configuração inicial do ESLint:
 Criar o arquivo .eslintignore:
 Adicionar um script no arquivo package.json para executar o lint
+
+Prettier:https://www.aluiziodeveloper.com.br/prettier/
+yarn add prettier -D
+.prettierrc
+{
+  "semi": true,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "printWidth": 80,
+  "arrowParens": "avoid"
+}
+yarn add eslint-config-prettier@6.15.0 eslint-plugin-prettier@3.2.0 -D
