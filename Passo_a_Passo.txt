@@ -1,5 +1,7 @@
+https://www.aluiziodeveloper.com.br/
+
 yarn init -y
-yarn add typescript ts-node-dev @types/node -D 
+yarn add typescript ts-node-dev @types/node -D
 
 Criar arquivo tsconfig.json
 yarn tsc --init --rootDir src --outDir build \
@@ -12,3 +14,6 @@ Configuração do script de execução:
 "scripts": {
   "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts"
 }
+
+Editor Config:
+Clicar com o botão direito na aba de exploração e criar o editor config
