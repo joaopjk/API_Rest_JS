@@ -49,3 +49,34 @@ Configuração de importação - tsconfig.json
 	"@modules/*":["scr/modules/*"],
 	"@shared/*":["scr/shared/*"]
 }
+
+============Configuração para rodar o projeto =====
+yarn add express cors express-async-errors
+yarn add -D @types/express
+yarn add -D @types/cors
+
+server.ts
+import express from 'express';
+import cors from 'cors';
+import routes from './routes/index';
+
+const app = express();
+
+app.use(cors()); //Configurando o Cors na aplicação
+app.use(express.json()); //Configurando para api aceitar Json
+app.use(routes);
+
+app.listen(3333, () => {
+  console.log('Server started on port 3333');
+});
+
+routs.js
+import { Router } from 'express';
+
+const routes = Router();
+
+routes.get('/', (request, response) => {
+  return response.json({ message: 'Hello Dev !' });
+});
+
+export default routes;
