@@ -43,6 +43,7 @@ shared: Modulos compartilhados entre todos os modulos da aplicação.
 services: estarão dentro de cada modulo da aplicação e serão responsáveis por todas as regras que a aplicação, como por exemplo, server.ts,
 rotas, conexão com o banco de dados ...
 
+yarn add -D tsconfig-paths
 Configuração de importação - tsconfig.json
 "paths":{
 	"@config/*":["scr/config/*"],
@@ -116,3 +117,23 @@ app.use(
 yarn add typeorm reflect-metadata pg
 server.ts
 import 'reflect-metadata';
+
+ormconfig.json:
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "docker",
+  "database": "apivendas"
+}
+
+typeorm/index.ts:
+import { createConnection } from 'typeorm';
+
+createConnection();
+
+server.ts:
+import '@shared/typeorm';
+
+docker run --name postgres -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
