@@ -35,3 +35,17 @@ yarn add prettier -D
   "arrowParens": "avoid"
 }
 yarn add eslint-config-prettier@6.15.0 eslint-plugin-prettier@3.2.0 -D
+
+================Estrutura do Projeto============
+config: Configurações de bibliotecas externas, como por exemplo, autenticação,uploado,email e etc.
+modules: abrangem as áreas de conhecimento da aplicação, diretamente relacionas com as regras de negócio.
+shared: Modulos compartilhados entre todos os modulos da aplicação.
+services: estarão dentro de cada modulo da aplicação e serão responsáveis por todas as regras que a aplicação, como por exemplo, server.ts,
+rotas, conexão com o banco de dados ...
+
+Configuração de importação - tsconfig.json
+"paths":{
+	"@config/*":["scr/config/*"],
+	"@modules/*":["scr/modules/*"],
+	"@shared/*":["scr/shared/*"]
+}
