@@ -1,0 +1,25 @@
+https://www.aluiziodeveloper.com.br/
+
+yarn init -y
+yarn add typescript ts-node-dev @types/node -D
+
+Criar arquivo tsconfig.json
+yarn tsc --init --rootDir src --outDir build \
+--esModuleInterop --resolveJsonModule --lib es6 \
+--module commonjs --allowJs true --noImplicitAny true
+
+src/server.js
+
+Configuração do script de execução:
+"scripts": {
+  "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts"
+}
+
+Editor Config:
+Clicar com o botão direito na aba de exploração e criar o editor config
+
+Consigurando EsLint : https://www.aluiziodeveloper.com.br/eslint/
+yarn add -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+Na raiz do seu projeto crie um arquivo .eslintrc com uma configuração inicial do ESLint:
+Criar o arquivo .eslintignore:
+Adicionar um script no arquivo package.json para executar o lint
