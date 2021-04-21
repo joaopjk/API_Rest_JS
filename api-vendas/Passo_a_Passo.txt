@@ -213,3 +213,9 @@ Services
 Controller
 Routes
 
+========Criptografia
+yarn add bcryptjs
+yarn add -D @types/bcryptjs
+
+===========Autenticação
+
