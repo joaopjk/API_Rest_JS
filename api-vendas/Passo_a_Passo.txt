@@ -186,3 +186,24 @@ ProductsController => products.routs.ts > routes.ts
 Repository
 
 ========Validação de campos======
+Celebrate
+yarn add celebrate
+yarn addd -D @types/joi
+productsRounter.put(
+  '/:id',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      price: Joi.number().precision(2).required(),
+      quantity: Joi.number().required(),
+    },
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  productsController.update,
+);
+
+========================Migration User ===========
+ yarn typeorm migration:create -n CreateUsers
+yarn typeorm migration:run
