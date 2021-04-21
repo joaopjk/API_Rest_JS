@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { compare } from 'bcryptjs';
+import { sign } from 'jsonwebtoken';
 import AppError from 'src/shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
 import User from '../typeorm/entities/User';
@@ -12,12 +13,14 @@ interface IRequest {
 
 interface IResponse {
   user: User;
+  token: string;
 }
+
 class CreateSessionService {
   public async execute({
     email,
     password,
-  }: IRequest): Promise<User | undefined> {
+  }: IRequest): Promise<IResponse | undefined> {
     const usersRepository = getCustomRepository(UsersRepository);
     const user = await usersRepository.findByEmail(email);
 
@@ -31,7 +34,12 @@ class CreateSessionService {
       throw new AppError('Incorrect email/password combination 2', 401);
     }
 
-    return user;
+    const token = sign({}, '155C4scQFd67bqPFiuHSqQkYK7jUtnwpV6', {
+      subject: user!.id,
+      expiresIn: '1d',
+    });
+
+    return { user, token };
   }
 }
 
