@@ -181,4 +181,8 @@ export class ProductRepository extends Repository<Product> {
     return product;
   }
 }
+
+ProductsController => products.routs.ts > routes.ts
 Repository
+
+========Validação de campos======
