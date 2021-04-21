@@ -209,3 +209,5 @@ productsRounter.put(
 yarn typeorm migration:run
 
 Entidade Usuario
+Services
+Controller
