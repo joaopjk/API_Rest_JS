@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import authConfig from 'src/config/auth';
 import AppError from 'src/shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
 import User from '../typeorm/entities/User';
@@ -34,9 +35,9 @@ class CreateSessionService {
       throw new AppError('Incorrect email/password combination 2', 401);
     }
 
-    const token = sign({}, '155C4scQFd67bqPFiuHSqQkYK7jUtnwpV6', {
+    const token = sign({}, authConfig.jwt.secret, {
       subject: user!.id,
-      expiresIn: '1d',
+      expiresIn: authConfig.jwt.expiresIn,
     });
 
     return { user, token };
