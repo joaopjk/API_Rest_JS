@@ -7,6 +7,7 @@ import routes from './routes/index';
 import AppError from '../errors/AppError';
 import '../typeorm';
 import { errors } from 'celebrate';
+import uploadConfig from 'src/config/upload';
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(cors()); //Configurando o Cors na aplicação
 app.use(express.json()); //Configurando para api aceitar Json
 app.use(routes);
 app.use(errors());
-
+app.use('/files', express.static(uploadConfig.directory));
 app.use(
   (error: Error, request: Request, response: Response, next: NextFunction) => {
     if (error instanceof AppError) {
