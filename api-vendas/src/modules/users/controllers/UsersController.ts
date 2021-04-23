@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import CreateSessionService from '../services/CreateSessionService';
 import CreateUserService from '../services/CreateUserService';
 import ListUserService from '../services/ListUserService';
 
