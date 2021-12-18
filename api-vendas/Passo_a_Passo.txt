@@ -1,0 +1,10 @@
+- Instalar os pacotes do projeto
+yarn init -y : Incluir o package.json no projeto
+yarn add typescript ts-node-dev @types/node tsconfig-paths -D: Instalando o typescript e a tipagem no projeto
+tsconfig: Configurações do typescript
+npx tsc --init --rootDir src --outDir build --esModuleInterop --resolveJsonModule --lib es6 --module commonjs --allowJs true --noImplicitAny true
+
+- Executando o projeto
+"scripts": {
+  "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts"
+}
