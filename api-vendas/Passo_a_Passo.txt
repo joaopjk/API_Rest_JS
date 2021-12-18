@@ -28,3 +28,7 @@ precisa entender.
   "@modules/*": ["src/modules/*"],
   "@shared/*": ["src/shared/*"]
 }
+
+- TypeORM
+Criar o arquivo ormconfig.json para conter todas as configurações dos arquivos de conexão ao banco de dados
+yarn add typeorm reflect-metadata pg
