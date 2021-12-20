@@ -5,10 +5,10 @@ export default class UserAvatarController {
     public async update(request: Request, reponse: Response): Promise<Response> {
         const updateAvatar = new UpdateUserAvatarService();
 
-        const user = updateAvatar.execute({
+        const user = await updateAvatar.execute({
             user_id: request.user.id,
             avatarFileName: request.file?.filename as string
-        })
+        });
 
         return response.json(user);
     }
