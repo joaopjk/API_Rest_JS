@@ -37,3 +37,4 @@ yarn typeorm migration:run
 
 - Validação de dados: Celebrate
 yarn add celebrate
+yarn add -D @types/joi

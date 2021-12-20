@@ -4,11 +4,13 @@ import cors from "cors";
 import routes from "./routes";
 import AppError from "@shared/errors/AppError";
 import "@shared/typeorm";
+import { errors } from "celebrate";
 
 const app = express();
 app.use(cors()); //Aceitando qualquer origem
 app.use(express.json()) //Configurando a aplicação para interpretar Json
 app.use(routes);
+app.use(errors()); // Handler de captura de error do celebrate
 app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
     if (error instanceof AppError) {
         return response.status(error.statusCode).json({
