@@ -42,3 +42,5 @@ yarn add -D @types/joi
 - Criptografia
 yarn add bcryptjs
 yarn add -D @types/bcryptjs
+
+- JWT
