@@ -34,3 +34,6 @@ Criar o arquivo ormconfig.json para conter todas as configurações dos arquivos
 yarn add typeorm reflect-metadata pg
 yarn typeorm migration:create -n <name> : Criar a migration para o banco
 yarn typeorm migration:run
+
+- Validação de dados: Celebrate
+yarn add celebrate
