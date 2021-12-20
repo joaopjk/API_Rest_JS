@@ -2,6 +2,7 @@ import AppError from "@shared/errors/AppError";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { getCustomRepository } from "typeorm";
+import authConfig from "@config/auth";
 import User from "../typeorm/entities/User";
 import UsersRepository from "../typeorm/repositories/UsersRepository";
 
@@ -29,9 +30,9 @@ class CreateSessionsService {
             throw new AppError("Usuário ou senha inválidos !", 401);
         }
 
-        const token = sign({}, "155ef9961868be69e62ba99e815bc3a6", {
+        const token = sign({}, authConfig.jwt.secret, {
             subject: user.id,
-            expiresIn: "1d"
+            expiresIn: authConfig.jwt.expiresIn
         });
 
         return { user, token };
