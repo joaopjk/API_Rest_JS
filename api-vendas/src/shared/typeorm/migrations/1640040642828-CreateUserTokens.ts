@@ -33,6 +33,16 @@ export class CreateUserTokens1640040642828 implements MigrationInterface {
                     type: 'timestamp with time zone',
                     default: 'now()',
                 }
+            ],
+            foreignKeys: [
+                {
+                    name: "TokenUser",
+                    referencedTableName: "users",
+                    referencedColumnNames: ["id"],
+                    columnNames: ["user_id"],
+                    onDelete: 'CASCADE',
+                    onUpdate: 'CASCADE'
+                }
             ]
         }));
     }
