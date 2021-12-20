@@ -38,3 +38,7 @@ yarn typeorm migration:run
 - Validação de dados: Celebrate
 yarn add celebrate
 yarn add -D @types/joi
+
+- Criptografia
+yarn add bcryptjs
+yarn add -D @types/bcryptjs
