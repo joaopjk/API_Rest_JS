@@ -19,7 +19,7 @@ export default class UsersController {
 
     public async delete(request: Request, response: Response): Promise<Response> {
         const { id } = request.params;
-        const deleteUser = new DeleteUserService();
+        const deleteUser = await new DeleteUserService();
         await deleteUser.execute({ id });
         return response.json([]);
     }
