@@ -44,3 +44,5 @@ yarn add bcryptjs
 yarn add -D @types/bcryptjs
 
 - JWT
+yarn add jsonwebtoken
+yarn add -D @types/jsonwebtoken
