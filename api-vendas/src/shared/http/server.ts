@@ -5,10 +5,12 @@ import routes from "./routes";
 import AppError from "@shared/errors/AppError";
 import "@shared/typeorm";
 import { errors } from "celebrate";
+import uploadConfig from "@config/upload";
 
 const app = express();
 app.use(cors()); //Aceitando qualquer origem
 app.use(express.json()) //Configurando a aplicação para interpretar Json
+app.use('/files', express.static(uploadConfig.directory));
 app.use(routes);
 app.use(errors()); // Handler de captura de error do celebrate
 app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
@@ -16,12 +18,12 @@ app.use((error: Error, request: Request, response: Response, next: NextFunction)
         return response.status(error.statusCode).json({
             status: "error",
             message: error.message
-        })
+        });
     }
     return response.status(500).json({
         status: 'error',
         message: 'Internal server error'
-    })
+    });
 }); //handler de captura de error
 
 app.listen(3333, () => {
