@@ -30,7 +30,7 @@ customersRoutes.put("/:id", celebrate({
     },
     [Segments.BODY]: {
         name: Joi.string().required(),
-        email: Joi.number().required()
+        email: Joi.string().required()
     }
 }), customersController.update);
 
