@@ -13,7 +13,7 @@ class ShowCustomerService {
 
         const customer = await customersRepository.findById(id);
         if (!customer)
-            throw new AppError("Usuário não encontrado!", 404);
+            throw new AppError("Cliente não encontrado!", 404);
 
         return customer;
     }
