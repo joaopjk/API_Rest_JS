@@ -25,6 +25,10 @@ class OrdersProducts {
     @ManyToOne(() => Product, product => product.order_products)
     @JoinColumn({ name: "product_id" })
     product: Product;
+    @Column()
+    order_id: string;
+    @Column()
+    product_id: string;
     @CreateDateColumn()
     created_at: Date;
     @UpdateDateColumn()
