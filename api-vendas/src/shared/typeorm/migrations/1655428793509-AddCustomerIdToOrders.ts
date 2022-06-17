@@ -20,7 +20,7 @@ export class AddCustomerIdToOrders1655428793509 implements MigrationInterface {
                 referencedColumnNames: ["id"],
                 onDelete: "SET NULL"
             })
-        )
+        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
