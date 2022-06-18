@@ -7,10 +7,12 @@ import AppError from "@shared/errors/AppError";
 import "@shared/typeorm";
 import { errors } from "celebrate";
 import uploadConfig from "@config/upload";
+import rateLimiter from "./middlewares/rateLimiter";
 
 const app = express();
 app.use(cors()); //Aceitando qualquer origem
 app.use(express.json()) //Configurando a aplicação para interpretar Json
+app.use(rateLimiter)
 app.use('/files', express.static(uploadConfig.directory));
 app.use(routes);
 app.use(errors()); // Handler de captura de error do celebrate
