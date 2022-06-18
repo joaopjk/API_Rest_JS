@@ -2,21 +2,12 @@ import CustomerRepository from "@modules/customers/infra/typeorm/repositories/Cu
 import { ProductRepository } from "@modules/products/infra/typeorm/repositories/ProductRepositoriy";
 import AppError from "@shared/errors/AppError";
 import { getCustomRepository } from "typeorm";
+import { ICreateOrder } from "../domain/models/ICreateOrder";
 import Order from "../infra/typeorm/entities/Order";
 import { OrdersRepository } from "../infra/typeorm/repositories/OrdersRepository";
 
-interface IProduct {
-    id: string;
-    quantity: number;
-}
-
-interface IRequest {
-    customer_id: string;
-    products: IProduct[]
-}
-
 class CreateOrderService {
-    public async execute({ customer_id, products }: IRequest): Promise<Order> {
+    public async execute({ customer_id, products }: ICreateOrder): Promise<Order> {
         const ordersRepository = getCustomRepository(OrdersRepository);
         const customersRepository = getCustomRepository(CustomerRepository);
         const productsRepository = getCustomRepository(ProductRepository);
