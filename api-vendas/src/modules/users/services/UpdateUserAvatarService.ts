@@ -5,14 +5,10 @@ import UsersRepository from "../infra/typeorm/repositories/UsersRepository";
 import uploadConfig from "@config/upload";
 import fs from "fs";
 import User from "../infra/typeorm/entities/User";
-
-interface IRequest {
-    user_id: string;
-    avatarFileName: string;
-}
+import { IUpdateUserAvatar } from "../domain/models/IUpdateUserAvatar";
 
 class UpdateUserAvatarService {
-    public async execute({ user_id, avatarFileName }: IRequest): Promise<User> {
+    public async execute({ user_id, avatarFileName }: IUpdateUserAvatar): Promise<User> {
         const userRepository = getCustomRepository(UsersRepository);
         let user = await userRepository.findById(user_id);
         if (!user) {

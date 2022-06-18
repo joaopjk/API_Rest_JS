@@ -3,21 +3,11 @@ import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { getCustomRepository } from "typeorm";
 import authConfig from "@config/auth";
-import User from "../infra/typeorm/entities/User";
 import UsersRepository from "../infra/typeorm/repositories/UsersRepository";
-
-interface IRequest {
-    email: string;
-    password: string;
-}
-
-interface IResponse {
-    user: User;
-    token: string;
-}
+import { IRequestCreateSession, IResposeCreateSession } from "../domain/models/ICreateSession";
 
 class CreateSessionsService {
-    public async execute({ email, password }: IRequest): Promise<IResponse> {
+    public async execute({ email, password }: IRequestCreateSession): Promise<IResposeCreateSession> {
         const userRepository = getCustomRepository(UsersRepository);
 
         const user = await userRepository.findByEmail(email);

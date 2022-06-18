@@ -1,16 +1,9 @@
 import AppError from "@shared/errors/AppError";
 import { compare, hash } from "bcryptjs"
 import { getCustomRepository } from "typeorm";
+import { IUpdateProfile } from "../domain/models/IUpdateProfile";
 import User from "../infra/typeorm/entities/User";
 import UsersRepository from "../infra/typeorm/repositories/UsersRepository";
-
-interface IRequest {
-    user_id: string;
-    name: string;
-    email: string;
-    password?: string;
-    old_password?: string;
-}
 
 class UpdateProfileService {
     public async execute({
@@ -19,7 +12,7 @@ class UpdateProfileService {
         email,
         password,
         old_password
-    }: IRequest): Promise<User> {
+    }: IUpdateProfile): Promise<User> {
         const usersRepository = getCustomRepository(UsersRepository);
 
         const user = await usersRepository.findById(user_id);
