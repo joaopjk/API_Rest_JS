@@ -3,16 +3,11 @@ import { getCustomRepository } from "typeorm";
 import Product from "../infra/typeorm/entities/Product";
 import { ProductRepository } from "../infra/typeorm/repositories/ProductRepositoriy";
 import RedisCache from "@shared/cache/RedisCache";
+import { ICreatProduct } from "../domain/models/ICreateProduct";
 const chaveCache = "api-vendas-PRODUCT_LIST";
 
-interface IRequest {
-    name: string;
-    price: number;
-    quantity: number
-}
-
 class CreateProductService {
-    public async execute({ name, price, quantity }: IRequest): Promise<Product> {
+    public async execute({ name, price, quantity }: ICreatProduct): Promise<Product> {
         const productRepository = getCustomRepository(ProductRepository);
         const redisCache = new RedisCache();
 

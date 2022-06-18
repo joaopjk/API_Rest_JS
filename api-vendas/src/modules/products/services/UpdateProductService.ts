@@ -1,19 +1,13 @@
 import RedisCache from "@shared/cache/RedisCache";
 import AppError from "@shared/errors/AppError";
 import { getCustomRepository } from "typeorm";
+import { IUpdateProduct } from "../domain/models/IUpdateProduct";
 import Product from "../infra/typeorm/entities/Product";
 import { ProductRepository } from "../infra/typeorm/repositories/ProductRepositoriy";
 const chaveCache = "api-vendas-PRODUCT_LIST";
 
-interface IRequest {
-    id: string;
-    name: string;
-    price: number;
-    quantity: number;
-}
-
 class UpdateProductService {
-    public async execute({ id, name, price, quantity }: IRequest): Promise<Product> {
+    public async execute({ id, name, price, quantity }: IUpdateProduct): Promise<Product> {
         const productRepository = getCustomRepository(ProductRepository);
         const redisCache = new RedisCache();
 
