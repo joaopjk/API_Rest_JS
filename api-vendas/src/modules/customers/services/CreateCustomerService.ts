@@ -1,24 +1,26 @@
 import AppError from "@shared/errors/AppError";
-import { hash } from "bcryptjs";
-import { getCustomRepository } from "typeorm";
+import { inject, injectable } from "tsyringe";
 import { ICreateCustomer } from "../domain/models/ICreateCustomer";
-import Customer from "../infra/typeorm/entities/Customer";
-import CustomerRepository from "../infra/typeorm/repositories/CustomerRepository";
+import { ICustomer } from "../domain/models/ICustomer";
+import { ICustomerRepository } from "../domain/repositories/ICustomerRepository";
 
+@injectable()
 class CreateCustomerService {
-    public async execute({ name, email }: ICreateCustomer): Promise<Customer> {
-        const customersRepository = getCustomRepository(CustomerRepository);
+    constructor(
+        @inject("CustomerRepository") private customersRepository: ICustomerRepository
+    ) { }
 
-        const customerEmailExists = await customersRepository.findByEmail(email);
+    public async execute({ name, email }: ICreateCustomer): Promise<ICustomer> {
+
+        const customerEmailExists = await this.customersRepository.findByEmail(email);
         if (customerEmailExists) {
             throw new AppError(`O cliente do ${email} já cadastrado em nosso site!`);
         }
 
-        const customer = customersRepository.create({
+        const customer = await this.customersRepository.create({
             name, email
         });
 
-        await customersRepository.save(customer);
         return customer;
     }
 }

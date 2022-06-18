@@ -8,6 +8,7 @@ import "@shared/infra/typeorm";
 import { errors } from "celebrate";
 import uploadConfig from "@config/upload";
 import rateLimiter from "./middlewares/rateLimiter";
+import "@shared/container";
 
 const app = express();
 app.use(cors()); //Aceitando qualquer origem
@@ -25,7 +26,8 @@ app.use((error: Error, request: Request, response: Response, next: NextFunction)
     }
     return response.status(500).json({
         status: 'error',
-        message: 'Internal server error'
+        message: 'Internal server error',
+        errorMessage: error.message
     });
 }); //handler de captura de error
 
