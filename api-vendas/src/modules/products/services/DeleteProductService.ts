@@ -1,7 +1,7 @@
 import RedisCache from "@shared/cache/RedisCache";
 import AppError from "@shared/errors/AppError";
 import { getCustomRepository } from "typeorm";
-import { ProductRepository } from "../typeorm/repositories/ProductRepositoriy";
+import { ProductRepository } from "../infra/typeorm/repositories/ProductRepositoriy";
 const chaveCache = "api-vendas-PRODUCT_LIST";
 
 interface IRequest {
