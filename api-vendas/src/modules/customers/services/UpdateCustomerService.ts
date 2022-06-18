@@ -1,21 +1,16 @@
 import AppError from "@shared/errors/AppError";
 import { compare, hash } from "bcryptjs"
 import { getCustomRepository } from "typeorm";
+import { IUpdateCustomer } from "../domain/models/IUpdateCustomer";
 import Customer from "../infra/typeorm/entities/Customer";
 import CustomerRepository from "../infra/typeorm/repositories/CustomerRepository";
-
-interface IRequest {
-    id: string;
-    name: string;
-    email: string;
-}
 
 class UpdateCustomerService {
     public async execute({
         id,
         name,
         email
-    }: IRequest): Promise<Customer> {
+    }: IUpdateCustomer): Promise<Customer> {
         const customerRepository = getCustomRepository(CustomerRepository);
 
         const customer = await customerRepository.findById(id);
